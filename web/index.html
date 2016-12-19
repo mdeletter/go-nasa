@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nasa ground control</title>
+  </head>
+  <body>
+    <h1>Welcome to Nasa ground control</h1>
+	<img id="message" src="tmp/data.png" width="1261" height="732" alt="Data received from spaceship">
+    <script>
+        window.setInterval(function()
+        {
+                document.getElementById('message').src = "tmp/data.png?random="+new Date().getTime();
+        }, 5000);
+    </script>
+  </body>
+</html>

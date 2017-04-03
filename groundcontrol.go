@@ -36,13 +36,25 @@ type Groundcontrol struct {
 
 func (g *Groundcontrol) run() {
 
+	// --------------------
+	// START HACKING HERE
+	// --------------------
+
+	// 1. Create a new channel where we receive the datapoint information (string) using make
+	// 2. Fire up 50 workers to connect to the spaceship (using 50 separate go routines).
+	// 3. Use a endless for loop to append datapoint from each channel, to the groundcontrol datapoints (g.datapoints).
+	// 4. Execute: go run groundcontrol and see wat happen on localhost:8001
+}
+
+// Worker continues try to reach the spaceship
+func worker(id int, data chan string) {
 	for {
 		message, err := reachout()
 		if err != nil {
-			log.Printf("Error reading spaceship response: %v", err)
+			log.Printf("Error reading spaceship response: %v (worker %v)", err, id)
 			continue
 		}
-		g.datapoints = append(g.datapoints, message)
+		data <- message
 	}
 }
 

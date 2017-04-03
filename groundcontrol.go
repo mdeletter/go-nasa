@@ -41,8 +41,17 @@ func (g *Groundcontrol) run() {
 	// --------------------
 
 	// 1. Create a new channel where we receive the datapoint information (string) using make
+	dataChannel := make(chan string)
+
 	// 2. Fire up 50 workers to connect to the spaceship (using 50 separate go routines).
+	for i := 0; i < 50; i++ {
+		go worker(i, dataChannel)
+	}
+
 	// 3. Use a endless for loop to append datapoint from each channel, to the groundcontrol datapoints (g.datapoints).
+	for {
+		g.datapoints = append(g.datapoints, <-dataChannel)
+	}
 	// 4. Execute: go run groundcontrol and see wat happen on localhost:8001
 }
 

@@ -7,6 +7,7 @@ import (
 	"image"
 	"image/color"
 	"image/jpeg"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
@@ -47,15 +48,29 @@ func (g *Groundcontrol) run() {
 
 // reachout to the spaceship.
 func reachout() (string, error) {
-	// --------------------
-	// START HACKING HERE
-	// --------------------
 
 	// 1. Use the http.Get to access the spaceship
+	resp, err := http.Get("http://localhost:8000/")
+	if err != nil {
+		return "", err
+	}
+
 	// 2. Don't forget closing the response body using 'defer'
+	defer resp.Body.Close()
+
 	// 3. When the response statuscode isn't a 200 return an error using fmt.Errof()
+	if resp.StatusCode != 200 {
+		return "", fmt.Errorf("Non-200 status code %d", resp.StatusCode)
+	}
+
 	// 4. Next step is to read the body from the response using ioutil.ReadAll()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+
 	// 5. Cast the body to a string and return this function
+	return string(body), nil
 	// 6. That's it, use go run grouncontrol to test this.
 }
 

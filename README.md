@@ -47,6 +47,8 @@ Check out: go routines, wait groups, method pointer receivers.
 If you implement this correctly and you wait 10 minutes, you see what happened inside the spaceship.  
  
 ### Extra: With the speed of light
+First checkout branch ```extra```
+
 You probably also noted that some connections are really slow and holding us down. 
 Try to implement timeouts with Go channels to speed up our process.
 

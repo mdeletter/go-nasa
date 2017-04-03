@@ -54,7 +54,7 @@ Try to implement timeouts with Go channels to speed up our process.
 
 Check out: select channel, timeout channel.
 
-### To infinity
+### Extra: To infinity
 Launch 4 more spaceships and gathering all the information inside groundcontrol.
 
 Check out: maps, channels, goroutines

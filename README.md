@@ -39,6 +39,8 @@ $ go run groundcontrol.go
 Open [Ground control](http://localhost:8001/)
 
 ## 2. Add more capacity
+First checkout branch ```step2```
+
 Use a couple of workers to throw more capacity to the problem. Also tune the total of workers to prevent TCP connection errors.
 Check out: go routines, wait groups, method pointer receivers.
 
